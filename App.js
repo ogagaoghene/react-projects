@@ -29,8 +29,6 @@ class App extends React.Component {
             <>
                <h1>Welcome to the app</h1>
                <p>Hi there, {this.state.displayName}</p>
-               <input type="text" value={this.state.name} onChange={this.handleChange}/>
-               <button onClick={this.handleClick}>Update name</button>
             </>
         );
     }
