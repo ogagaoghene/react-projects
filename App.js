@@ -1,41 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-import './style.css';
+const App = props => {
+    const [items, setItems] = useState(['apple', 'pear', 'orange']);
 
-class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            displayName: '',
-            name: ''
-        }
-        this.handleChange = this.handleChange.bind(this);
-        this.handleClick  = this.handleClick.bind(this);
-    }
-
-    handleChange(event) {
-        this.setState({
-            name: event.target.value
-        })
+    const clearBasket = () => {
+        setItems([])
     };
 
-    handleClick(event) {
-        this.setState({
-            displayName: this.state.name
-        })
-    };
-
-    render() {
-        return (
-            <>
-                <h1>Welcome to the app</h1>
-                <p>Hi, there {this.state.displayName}</p>
-                <p>Enter your name below so we can get better acquainted</p>
-                <input value={this.state.name} onChange={this.handleChange} />
-                <button onClick={this.handleClick}>Update me</button>
-            </>
-        );
-    }
+    return <childComponent basket={items} clickHandler={clearBasket}/>;
 }
 
-export default App;
+const childComponent = props => {
+    return (
+        <>
+            <p>You have {props.basket.length} items in your basket</p>
+            <button onClick={props.clickHandler}>Empty basket</button>
+        </>
+    );
+}
