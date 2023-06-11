@@ -1,5 +1,10 @@
 import React from 'react'
 
-export default ({ name = "We've been introduced" }) => {
-    <p>Hi there, {name} </p>
-}
+
+const Greeting = ( {name} ) => {
+    return (
+        <p>Hi there, {name || "we've not been introduced"} </p>
+    );
+};
+
+export default Greeting;

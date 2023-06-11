@@ -1,34 +1,32 @@
 import React from 'react';
+import Title from './components/Title';
+import Input from './components/Input';
+import Greeting from './components/Greeting';
+
 import './style.css';
 
 class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            displayName: '',
-            name: ''
+            displayName: ''
         };
-        this.handleChange = this.handleChange.bind(this);
         this.handleClick  = this.handleClick.bind(this);
     }
 
-    handleChange(event) {
+    handleClick(name) {
         this.setState({
-            name: event.target.value
-        })
+            displayName: name
+        });
     };
-
-    handleClick(event) {
-        this.setState({
-            displayName: this.state.name
-        })
-    }
 
     render() {
         return (
             <>
-               <h1>Welcome to the app</h1>
-               <p>Hi there, {this.state.displayName}</p>
+               <Title title="Welcome to the app"/>
+               <Greeting name={this.state.displayName}/>
+               <p>Enter your name below so we can get better acquainted</p>
+               <Input handleClick={this.handleClick} />
             </>
         );
     }
