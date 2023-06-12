@@ -7,10 +7,11 @@ const App = props => {
         setItems([])
     };
 
-    return <childComponent basket={items} clickHandler={clearBasket}/>;
+    return <ChildComponent basket={items} clickHandler={clearBasket}/>;
 }
 
-const childComponent = props => {
+const ChildComponent = props => {
+    
     return (
         <>
             <p>You have {props.basket.length} items in your basket</p>
@@ -18,3 +19,5 @@ const childComponent = props => {
         </>
     );
 }
+
+export default App;
