@@ -1,25 +1,31 @@
 import React, {useState } from 'react';
 
-const App = (props) => {
-    const [data, setData] = useState('');
+const App = () => {
+    const [data, setData] = useState(null);
 
-    handleCallBack = (data) => {
-        setData(data);
+    const handleCallBack = (data) => {
+        setData(data)
     }
-
-    return(
-        <ChildComponent parentCallBack = { handleCallBack } />
+    
+    return (
+        <div>
+            <ChildComponent parentCallBack = { handleCallBack } />
+            <p>Status: { data } </p>
+        </div>
+        
     );
 }
 
 const ChildComponent = (props) => {
-    onTrigger = (event) => {
-        props.parentCallBack("Data from child");
+
+    const onTrigger = (event) => {
+        props.parentCallBack("Data from child Component");
         event.preventDefault();
     }
+
     return (
         <div>
-            <form onSububmit = {props.onTrigger}>
+            <form onSubmit = { onTrigger }>
                 <input type="submit" value="Submit" />
             </form>
         </div>
@@ -27,3 +33,4 @@ const ChildComponent = (props) => {
 }
 
 
+export default App;

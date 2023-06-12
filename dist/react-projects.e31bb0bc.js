@@ -28892,6 +28892,10 @@ if ("development" === 'production') {
 },{"react-dom":"node_modules/react-dom/index.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
 var _react = _interopRequireWildcard(require("react"));
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -28901,30 +28905,32 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i.return && (_r = _i.return(), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-var App = function App(props) {
-  var _useState = (0, _react.useState)(''),
+var App = function App() {
+  var _useState = (0, _react.useState)(null),
     _useState2 = _slicedToArray(_useState, 2),
     data = _useState2[0],
     setData = _useState2[1];
-  handleCallBack = function handleCallBack(data) {
+  var handleCallBack = function handleCallBack(data) {
     setData(data);
   };
-  return /*#__PURE__*/_react.default.createElement(ChildComponent, {
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(ChildComponent, {
     parentCallBack: handleCallBack
-  });
+  }), /*#__PURE__*/_react.default.createElement("p", null, "Status: ", data, " "));
 };
 var ChildComponent = function ChildComponent(props) {
-  onTrigger = function onTrigger(event) {
-    props.parentCallBack("Data from child");
+  var onTrigger = function onTrigger(event) {
+    props.parentCallBack("Data from child Component");
     event.preventDefault();
   };
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("form", {
-    onSububmit: props.onTrigger
+    onSubmit: onTrigger
   }, /*#__PURE__*/_react.default.createElement("input", {
     type: "submit",
     value: "Submit"
   })));
 };
+var _default = App;
+exports.default = _default;
 },{"react":"node_modules/react/index.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
@@ -28959,7 +28965,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65183" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50390" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
