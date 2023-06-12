@@ -7,13 +7,16 @@ import './style.css';
 
 const App = props => {
     const [displayName, setDisplayName] = useState();
+    const handleClick = ( name ) => {
+        setDisplayName(name);
+    }
 
     return (
         <>
             <Title title="Welcome to the app"/>
             <Greeting name={displayName}/>
             <p>Enter your name below so we can get better acquainted</p>
-            <Input handleClick={name => setDisplayName(name)} />
+            <Input handleClick={ handleClick } />
         </>
     );
 }

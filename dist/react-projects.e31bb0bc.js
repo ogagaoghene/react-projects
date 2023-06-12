@@ -28925,16 +28925,18 @@ var Input = function Input(props) {
     _useState2 = _slicedToArray(_useState, 2),
     name = _useState2[0],
     setName = _useState2[1];
+  var handleOnChange = function handleOnChange(event) {
+    setName(event.target.value);
+  };
+  var handleCallBack = function handleCallBack() {
+    props.handleClick(name);
+  };
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
     value: name,
-    onChange: function onChange(evt) {
-      return setName(evt.target.value);
-    }
+    onChange: handleOnChange
   }), /*#__PURE__*/_react.default.createElement("button", {
-    onClick: function onClick() {
-      return props.handleClick(name);
-    }
+    onClick: handleCallBack
   }, "Update name"));
 };
 var _default = Input;
@@ -29035,14 +29037,15 @@ var App = function App(props) {
     _useState2 = _slicedToArray(_useState, 2),
     displayName = _useState2[0],
     setDisplayName = _useState2[1];
+  var handleClick = function handleClick(name) {
+    setDisplayName(name);
+  };
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_Title.default, {
     title: "Welcome to the app"
   }), /*#__PURE__*/_react.default.createElement(_Greeting.default, {
     name: displayName
   }), /*#__PURE__*/_react.default.createElement("p", null, "Enter your name below so we can get better acquainted"), /*#__PURE__*/_react.default.createElement(_Input.default, {
-    handleClick: function handleClick(name) {
-      return setDisplayName(name);
-    }
+    handleClick: handleClick
   }));
 };
 var _default = App;
@@ -29083,7 +29086,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51290" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51835" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
