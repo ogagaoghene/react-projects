@@ -1,16 +1,45 @@
 import React from 'react';
 
-const App = function() {
-    const data = 'Pass data from Parent to Child Component'
-    return (
-        <ChildComponent dataParentToChild = { data } />
-    )
+class App extends React.Component { 
+    constructor(props){
+        super(props);
+
+        this.state = {
+            data: ''
+        }
+    }
+
+    handleCallback = (childData) =>{
+        this.setState({data: childData})
+    }
+
+    render(){
+        const {data} = this.state;
+        return(
+            <div>
+                <Child parentCallback = {this.handleCallback}/>
+                <p>{ data }</p>
+            </div>
+        )
+    }
 }
 
-const ChildComponent = function( { dataParentToChild} ) {
-    return (
-        <h1> { dataParentToChild } </h1>
-    );
+class Child extends React.Component{
+  
+    onTrigger = (event) => {
+        this.props.parentCallback("Data from child");
+        event.preventDefault();
+    }
+
+    render(){
+        return(
+        <div>
+            <form onSubmit = {this.onTrigger}>
+                <input type = "submit" value = "Submit"/>
+            </form>
+        </div>
+        )
+    }
 }
 
 export default App;
