@@ -1,22 +1,15 @@
-import React, {useState} from 'react';
+import React from 'react';
 
-const App = props => {
-    const [items, setItems] = useState(['apple', 'pear', 'orange']);
-
-    const clearBasket = () => {
-        setItems([])
-    };
-
-    return <ChildComponent basket={items} clickHandler={clearBasket}/>;
+const App = function() {
+    const data = 'Pass data from Parent to Child Component'
+    return (
+        <ChildComponent dataParentToChild = { data } />
+    )
 }
 
-const ChildComponent = props => {
-    
+const ChildComponent = function( { dataParentToChild} ) {
     return (
-        <>
-            <p>You have {props.basket.length} items in your basket</p>
-            <button onClick={props.clickHandler}>Empty basket</button>
-        </>
+        <h1> { dataParentToChild } </h1>
     );
 }
 
