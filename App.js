@@ -3,33 +3,37 @@ import React from 'react';
 class App extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = {
-            data: 'Data from Parent Component'
+            data: 'Parent to Child component'
         };
-    };
+    }
 
     render() {
-        const {data} = this.state;
+        const { data } = this.state;
         return (
             <div>
-                <ChildComponent dataParentToChild={data}/>
+                <ChildComponent dataParentToChild={data} />
             </div>
         );
     }
 }
 
-
-class ChildComponet extends React.Component {
+class ChildComponent extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = {
             data: this.props.dataParentToChild
         }
-    };
+    }
+
     render() {
-        const { data } = this.state
+        const { data } = this.state;
         return (
             <h1>{data}</h1>
-        );
-    };
+        )
+    }
 }
+
+export default App;
