@@ -1,45 +1,29 @@
-import React from 'react';
+import React, {useState } from 'react';
 
-class App extends React.Component { 
-    constructor(props){
-        super(props);
+const App = (props) => {
+    const [data, setData] = useState('');
 
-        this.state = {
-            data: ''
-        }
+    handleCallBack = (data) => {
+        setData(data);
     }
 
-    handleCallback = (childData) =>{
-        this.setState({data: childData})
-    }
-
-    render(){
-        const {data} = this.state;
-        return(
-            <div>
-                <Child parentCallback = {this.handleCallback}/>
-                <p>{ data }</p>
-            </div>
-        )
-    }
+    return(
+        <ChildComponent parentCallBack = { handleCallBack } />
+    );
 }
 
-class Child extends React.Component{
-  
+const ChildComponent = (props) => {
     onTrigger = (event) => {
-        this.props.parentCallback("Data from child");
+        props.parentCallBack("Data from child");
         event.preventDefault();
     }
-
-    render(){
-        return(
+    return (
         <div>
-            <form onSubmit = {this.onTrigger}>
-                <input type = "submit" value = "Submit"/>
+            <form onSububmit = {props.onTrigger}>
+                <input type="submit" value="Submit" />
             </form>
         </div>
-        )
-    }
+    );
 }
 
-export default App;
+
