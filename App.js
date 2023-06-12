@@ -1,20 +1,35 @@
-import React, {useState} from 'react';
+import React from 'react';
 
-const App = props => {
-    const [items, setItems] = useState(['apple', 'pear', 'orange']);
-
-    const clearBasket = () => {
-        setItems([])
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: 'Data from Parent Component'
+        };
     };
 
-    return <childComponent basket={items} clickHandler={clearBasket}/>;
+    render() {
+        const {data} = this.state;
+        return (
+            <div>
+                <ChildComponent dataParentToChild={data}/>
+            </div>
+        );
+    }
 }
 
-const childComponent = props => {
-    return (
-        <>
-            <p>You have {props.basket.length} items in your basket</p>
-            <button onClick={props.clickHandler}>Empty basket</button>
-        </>
-    );
+
+class ChildComponet extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: this.props.dataParentToChild
+        }
+    };
+    render() {
+        const { data } = this.state
+        return (
+            <h1>{data}</h1>
+        );
+    };
 }
